@@ -9,61 +9,15 @@ alwaysApply: true
 - We are using React and tailwind
 - You can @ files here
 - You can use markdown but dont have to
-- If its JSX add comment to the end of the code explaining every element style in a paragraph dont change code this is the structure example for that:
-NAVBAR COMPONENT STRUCTURE AND STYLES:
+- If its JSX add comment to the end of the code html structure
 
-1. Main Navigation Container (nav)
-   - Width: 100% (full width)
-   - Padding: 16px (p-4)
-   - Background: Netflix background image
-   - Background Properties: cover, center, no-repeat
+for explaining structure do like html format for example
+<div>
+<{html element} = {his function on the code}>
+   <{html element} = {his function on the code}>
 
-2. Flex Container (div)
-   - Display: flex
-   - Alignment: items-center (vertical center)
-   - Justify: space-between (horizontal spacing)
-   
-3. Logo Section
-   a. Link Container
-      - Display: flex
-      - Alignment: items-center
-   
-   b. Logo Container (div)
-      - Height: responsive
-        * Mobile: 32px (h-8)
-        * Tablet: 64px (md:h-16)
-        * Desktop: 128px (lg:h-32)
-      - Display: flex
-      - Alignment: items-center
-   
-   c. Logo Image
-      - Width: responsive
-        * Mobile: 64px (w-16)
-        * Desktop: 128px (lg:w-32)
-      - Height: auto
-      - Cursor: pointer
-      - Object-fit: contain
-
-4. Sign In Section
-   a. Container (div)
-      - Display: flex
-      - Alignment: items-center
-   
-   b. Sign In Link
-      - Display: flex
-      - Alignment: items-center
-   
-   c. Sign In Button
-      - Background: Netflix red (#e50914)
-      - Padding: 16px horizontal, 4px vertical
-      - Text: white
-      - Border-radius: 4px
-      - Hover: darker red
-      - Transition: smooth
-
-5. Conditional Components
-   - Feature: Shows if featureIncluded is true
-   - OptForm: Shows if optformIncluded is true
-*/
+- I also want you to list all the css code that has been used in that JSX file
+text-white = color: white;
+{tailwind css className} = {css property: css value}
 
 

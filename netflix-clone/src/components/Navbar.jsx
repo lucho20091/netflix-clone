@@ -33,58 +33,52 @@ const Navbar = ({ optformIncluded = false, featureIncluded = false}) => {
 export default Navbar;
 
 /*
-NAVBAR COMPONENT STRUCTURE AND STYLES:
+<div = main navigation container with fixed positioning>
+   <div = flex container for horizontal alignment>
+      <div = logo section>
+         <Link = home page link>
+            <div = logo container>
+               <img = netflix logo>
+            </div>
+         </Link>
+      </div>
 
-1. Main Navigation Container (nav)
-   - Width: 100% (full width)
-   - Padding: 16px (p-4)
-   - Background: Netflix background image
-   - Background Properties: cover, center, no-repeat
+      <div = right side container>
+         <Link = sign in page link>
+            <button = sign in button>
+               Sign In
+            </button>
+         </Link>
+      </div>
 
-2. Flex Container (div)
-   - Display: flex
-   - Alignment: items-center (vertical center)
-   - Justify: space-between (horizontal spacing)
-   
-3. Logo Section
-   a. Link Container
-      - Display: flex
-      - Alignment: items-center
-   
-   b. Logo Container (div)
-      - Height: responsive
-        * Mobile: 32px (h-8)
-        * Tablet: 64px (md:h-16)
-        * Desktop: 128px (lg:h-32)
-      - Display: flex
-      - Alignment: items-center
-   
-   c. Logo Image
-      - Width: responsive
-        * Mobile: 64px (w-16)
-        * Desktop: 128px (lg:w-32)
-      - Height: auto
-      - Cursor: pointer
-      - Object-fit: contain
+      {feature && <Feature />}
+      {optForm && <OptForm />}
+   </div>
+</div>
 
-4. Sign In Section
-   a. Container (div)
-      - Display: flex
-      - Alignment: items-center
-   
-   b. Sign In Link
-      - Display: flex
-      - Alignment: items-center
-   
-   c. Sign In Button
-      - Background: Netflix red (#e50914)
-      - Padding: 16px horizontal, 4px vertical
-      - Text: white
-      - Border-radius: 4px
-      - Hover: darker red
-      - Transition: smooth
-
-5. Conditional Components
-   - Feature: Shows if featureIncluded is true
-   - OptForm: Shows if optformIncluded is true
+Tailwind CSS Classes Used:
+w-full = width: 100%
+p-4 = padding: 1rem (16px)
+bg-cover = background-size: cover
+bg-center = background-position: center
+bg-no-repeat = background-repeat: no-repeat
+bg-[url('/images/misc/home-bg.jpg')] = background-image: url('/images/misc/home-bg.jpg')
+flex = display: flex
+items-center = align-items: center
+justify-between = justify-content: space-between
+h-8 = height: 2rem (32px)
+lg:h-32 = height: 8rem (128px) on large screens
+md:h-16 = height: 4rem (64px) on medium screens
+w-16 = width: 4rem (64px)
+lg:w-32 = width: 8rem (128px) on large screens
+h-auto = height: auto
+cursor-pointer = cursor: pointer
+object-contain = object-fit: contain
+bg-red-600 = background-color: #dc2626
+px-4 = padding-left: 1rem (16px), padding-right: 1rem (16px)
+py-1 = padding-top: 0.25rem (4px), padding-bottom: 0.25rem (4px)
+text-white = color: white
+rounded-md = border-radius: 0.375rem (6px)
+hover:bg-red-700 = background-color: #b91c1c on hover
+transition = transition-property: all, transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1), transition-duration: 150ms
 */
