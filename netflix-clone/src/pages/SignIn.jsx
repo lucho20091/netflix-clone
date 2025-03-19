@@ -1,8 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { useNavigate } from "react-router-dom"
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
+import { FirebaseContext } from '../context/firebase';
+import * as ROUTES from "../constants/routes"
 
 const SignIn = () => {
+  const navigate = useNavigate()
+  const { firebase } = useContext(FirebaseContext)
+  console.log(firebase)
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -15,8 +21,14 @@ const SignIn = () => {
     setError('');
     setIsLoading(true);
 
+    
     try {
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      const auth = firebase.auth()
+      await auth.signInWithEmailAndPassword(email, password)
+      setEmail("")
+      setPassword("")
+      setError("")
+      navigate(ROUTES.BROWSE)
     } catch (err) {
       setError('Invalid email or password.');
     } finally {

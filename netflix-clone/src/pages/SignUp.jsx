@@ -1,15 +1,23 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { FirebaseContext } from '../context/firebase';
+import * as ROUTES from "../constants/routes"
 
 const SignUp = () => {
+  const { firebase } = useContext(FirebaseContext)
+  const navigate = useNavigate()
+  const [firstName, setFirstName] = useState('')
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-
+  console.log(firebase)
   const validateForm = () => {
     const newErrors = {};
     
+    if (!firstName){
+      newErrors.firstName = 'Name is required.'
+    }
     // Email validation
     if (!email) {
       newErrors.email = 'Email is required.';
@@ -39,7 +47,18 @@ const SignUp = () => {
 
     try {
       // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // await new Promise(resolve => setTimeout(resolve, 1000));
+      const auth = firebase.auth()
+      const request = await auth.createUserWithEmailAndPassword(email, password)
+      await request.user.updateProfile({
+        displayName: firstName,
+        photoURL: `/images/users/${Math.ceil(Math.random() * 5)}.png`
+      })
+      setFirstName("")
+      setEmail("")
+      setPassword("")
+      navigate(ROUTES.BROWSE)
+      console.log("user created successfully")
       // Handle successful signup
     } catch (err) {
       setErrors({ form: 'An error occurred. Please try again.' });
@@ -76,6 +95,25 @@ const SignUp = () => {
                 </div>
               )}
               <div className="space-y-8">
+                <div>
+                <input
+                    type="text"
+                    placeholder="Full Name"
+                    className={`block w-full px-6 pt-6 pb-1 text-white bg-neutral-700 rounded appearance-none focus:outline-none focus:ring-0 peer ${
+                      errors.firstName ? 'border-b-2 border-[#e87c03]' : ''
+                    }`}
+                    value={firstName}
+                    onChange={(e) => {
+                      setFirstName(e.target.value);
+                      if (errors.email) {
+                        setErrors({ ...errors, firstName: '' });
+                      }
+                    }}
+                  />
+                  {errors.firstName && (
+                    <p className="text-[#e87c03] text-sm mt-1">{errors.firstName}</p>
+                  )}
+                </div>
                 <div>
                   <input
                     type="email"

@@ -4,6 +4,7 @@ import * as ROUTES from './constants/routes'
 import Home from './pages/Home'
 import SignIn from './pages/SignIn'
 import SignUp from './pages/SignUp'
+import Browse from "./pages/Browse"
 function App() {
 
   return (
@@ -12,7 +13,7 @@ function App() {
         <Route path={ROUTES.HOME} element={<Home />} />
         <Route path={ROUTES.SIGN_IN} element={<SignIn />} />
         <Route path={ROUTES.SIGN_UP} element={<SignUp />} />
-        {/* <Route path={ROUTES.BROWSE} element={<Browse />} /> */}
+        <Route path={ROUTES.BROWSE} element={<Browse />} />
       </Routes>
     </BrowserRouter>
   )
