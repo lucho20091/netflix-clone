@@ -1,7 +1,6 @@
 import React from 'react';
 
 const Jumbotron = ({...props}) => {
-  console.log(props);
   return (
     <div className="px-4 py-20 text-white max-w-screen-lg mx-auto">
       <div className={`max-w-7xl mx-auto flex flex-col ${props.direction === "row" ? "lg:flex-row" : "lg:flex-row-reverse"} items-center`}>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Footer from '../components/Footer';
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
@@ -7,16 +8,15 @@ const SignIn = () => {
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
+  const isInvalid = password === "" || email === ""
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     setIsLoading(true);
 
-    // Add your sign-in logic here
     try {
-      // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 1000));
-      // Handle successful sign-in
     } catch (err) {
       setError('Invalid email or password.');
     } finally {
@@ -26,9 +26,7 @@ const SignIn = () => {
 
   return (
     <div className="relative h-screen w-full bg-[url('/images/misc/home-bg.jpg')] bg-no-repeat bg-center bg-fixed bg-cover">
-      {/* Background Overlay */}
       <div className="bg-black w-full h-full bg-opacity-50">
-        {/* Header */}
         <header className="px-12 py-5">
           <Link to="/">
             <img
@@ -39,7 +37,6 @@ const SignIn = () => {
           </Link>
         </header>
 
-        {/* Sign In Form */}
         <div className="flex items-center justify-center">
           <div className="bg-black bg-opacity-70 px-16 py-16 self-center mt-2 lg:w-2/5 lg:max-w-md rounded-md w-full">
             <h2 className="text-white text-4xl mb-8 font-semibold">
@@ -76,7 +73,7 @@ const SignIn = () => {
 
               <button
                 type="submit"
-                disabled={isLoading}
+                disabled={isLoading || isInvalid}
                 className="w-full bg-red-600 py-3 text-white rounded-md mt-10 hover:bg-red-700 transition disabled:opacity-50"
               >
                 {isLoading ? 'Loading...' : 'Sign In'}
@@ -108,6 +105,7 @@ const SignIn = () => {
           </div>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 };
