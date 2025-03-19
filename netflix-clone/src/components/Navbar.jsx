@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import OptForm from './OptForm';
 import Feature from './Feature';
+import * as ROUTES from '../constants/routes';
 const Navbar = ({ optformIncluded = false, featureIncluded = false}) => {
   return (
     <nav className="w-full p-4 bg-cover bg-center bg-no-repeat bg-[url('/images/misc/home-bg.jpg')]">
@@ -16,7 +17,7 @@ const Navbar = ({ optformIncluded = false, featureIncluded = false}) => {
                 </div>
             </Link>
             <div className="flex items-center">
-                <Link to="/login" className="flex items-center">
+                <Link to={ROUTES.SIGN_IN} className="flex items-center">
                 <button className="bg-red-600 px-4 py-1 text-white rounded-md hover:bg-red-700 transition">
                     Sign In
                 </button>
