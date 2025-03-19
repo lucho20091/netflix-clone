@@ -1,0 +1,12 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+
+# Your rule content
+
+- We are using React and tailwind
+- You can @ files here
+- You can use markdown but dont have to
+- When i ask you to do something i want you to ask me 10 questions on what you think is importan information to do a good job before building something
