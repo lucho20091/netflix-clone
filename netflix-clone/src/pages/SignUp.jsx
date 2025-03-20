@@ -11,7 +11,6 @@ const SignUp = () => {
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-  console.log(firebase)
   const validateForm = () => {
     const newErrors = {};
     
@@ -58,7 +57,6 @@ const SignUp = () => {
       setEmail("")
       setPassword("")
       navigate(ROUTES.BROWSE)
-      console.log("user created successfully")
       // Handle successful signup
     } catch (err) {
       setErrors({ form: 'An error occurred. Please try again.' });

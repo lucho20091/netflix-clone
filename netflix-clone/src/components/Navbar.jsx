@@ -1,13 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useState } from "react"
 import OptForm from './OptForm';
 import Feature from './Feature';
 import FeatureMovie from "./FeatureMovie"
 import * as ROUTES from '../constants/routes';
-const Navbar = ({ optformIncluded = false, featureIncluded = false, profile = false}) => {
+const Navbar = ({ optformIncluded = false, featureIncluded = false, profile = false, user, changeCategory, signOut, setSearchTerm, searchTerm}) => {
+   const [ displayProfile, setDisplayProfile ] = useState(false)
    const backgroundImage = profile ? "bg-[url(/images/misc/joker1.jpg)]" : "bg-[url(/images/misc/home-bg.jpg)]"
   return (
-    <nav className={`w-full p-4 bg-cover bg-center bg-no-repeat ${backgroundImage}`}>
+    <nav className={`w-full px-8 py-2 bg-cover bg-center bg-no-repeat ${backgroundImage}`}>
         <div className="flex items-center justify-between">
             <div className="flex items-center gap-5">
                <Link to="/" className="flex items-center">
@@ -21,8 +23,8 @@ const Navbar = ({ optformIncluded = false, featureIncluded = false, profile = fa
                </Link>
                {profile && (
                   <>
-                     <Link to="/series" className="text-white">Series</Link>
-                     <Link to="/films" className="text-white">Films</Link> 
+                     <Link  onClick={() => changeCategory("series")}className="text-white">Series</Link>
+                     <Link  onClick={() => changeCategory("films")}className="text-white">Films</Link> 
                   </>
                )}
             </div>            
@@ -32,6 +34,13 @@ const Navbar = ({ optformIncluded = false, featureIncluded = false, profile = fa
                     Sign In
                 </button>
                 </Link>}
+                {profile && <div className="relative cursor-pointer flex" >
+                     <input placeholder="search" type="text" onChange={({target}) => setSearchTerm(target.value)} className="px-4"/>
+                     <img src={`/images/users/${user?.photoURL}.png`} alt="user" className="w-8" onClick={() => setDisplayProfile(prev => !prev)}/>
+                     {displayProfile && <div className="absolute right-0 top-8 bg-black py-2 px-4">
+                           <button className="text-white w-20 font-bold" onClick={() => signOut()}>Sign Out</button>
+                        </div>}
+                  </div>}
             </div>
         </div>
         {featureIncluded && <Feature />}
